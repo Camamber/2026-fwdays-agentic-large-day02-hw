@@ -27,3 +27,7 @@ dev-dist
 html
 meta*.json
 .claude
+
+# Local agent / BMad trees (not part of upstream CI; Prettier uses this file via --ignore-path)
+_bmad/
+.cursor/skills/bmad-*

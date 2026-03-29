@@ -1,0 +1,30 @@
+---
+description: "Yarn workspaces, build order, and package boundaries"
+globs: package.json,**/package.json,yarn.lock
+alwaysApply: false
+---
+# Monorepo (Yarn workspaces)
+
+## Layout
+
+- Root `package.json` defines `workspaces`: `excalidraw-app`, `packages/*`, `examples/*`.
+- Publishable/editor code lives under `packages/`; runnable product dev entry is `yarn start` → `excalidraw-app`.
+
+## Builds
+
+- Library ESM builds: `yarn build:packages` (builds common, math, element, excalidraw in order via root scripts).
+- Full app production build: `yarn build` (includes app + version steps per root scripts).
+
+## Dependencies
+
+- Prefer **workspace** dependencies (`@excalidraw/*`) over copying code between packages.
+- Do not add root `package-lock.json`; this repo uses **Yarn**.
+
+## Examples
+
+- `examples/*` are integration demos; keep them aligned with public `@excalidraw/excalidraw` API.
+
+## How to verify
+
+- After changing `packages/*` APIs used by the app: `yarn build:packages` then `yarn start` or `yarn build`.
+- `yarn test:typecheck` — workspace references and paths resolve.

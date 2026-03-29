@@ -1,0 +1,30 @@
+---
+description: "Host app shell: Vite, Jotai, and package imports"
+globs: excalidraw-app/**/*.ts,excalidraw-app/**/*.tsx
+alwaysApply: false
+---
+
+# excalidraw-app (host)
+
+## Role
+
+- `excalidraw-app` is the **Vite + React** shell around `@excalidraw/excalidraw`: collaboration, Firebase, Sentry, sharing, and app chrome.
+- Editor semantics and scene logic stay in `packages/excalidraw`; keep host changes thin when possible.
+
+## State (Jotai)
+
+- **Do not** import from `"jotai"` directly. ESLint restricts it — use project modules such as `editor-jotai` or `app-jotai` (see `.eslintrc.json`).
+
+## Editor API
+
+- Import the editor from `@excalidraw/excalidraw` and subpaths already used in `App.tsx` (analytics, `appState`, specific components). Follow existing import style.
+
+## Vite / env
+
+- Client env vars use the `VITE_` prefix. Read via `import.meta.env` as elsewhere in the app.
+
+## How to verify
+
+- `yarn test:code` — must pass (includes Jotai import restriction).
+- `yarn start` — app loads; exercise the flow you changed (collab, share, menu).
+- If you touch build config: `yarn build` from root.

@@ -1,0 +1,31 @@
+---
+description: "Vitest, test env, and coverage expectations"
+globs: "**/*.test.ts,**/*.test.tsx,**/setupTests.ts,vitest.config.mts"
+alwaysApply: false
+---
+
+# Testing (Vitest)
+
+## Runner and environment
+
+- Tests use **Vitest** with **jsdom** (`vitest.config.mts`).
+- Global test APIs are enabled (`globals: true`); `setupTests.ts` loads canvas mocks, `@testing-library/jest-dom`, IndexedDB fake, and Excalidraw polyfills.
+
+## Placement and naming
+
+- Colocate tests as `*.test.ts` / `*.test.tsx` next to the code under test (see existing packages and `excalidraw-app/tests` for app-level suites).
+- Prefer **deterministic** tests; reuse helpers under `packages/excalidraw/tests/helpers/` when touching editor behavior.
+
+## Snapshots
+
+- Snapshot dirs (e.g. `__snapshots__/`) are committed; update only when output change is intentional: `yarn test:update` (root script).
+
+## Coverage
+
+- Coverage thresholds are configured in `vitest.config.mts` (lines, branches, functions, statements). Do not lower thresholds without team agreement.
+
+## How to verify
+
+- `yarn test` or `yarn test:app` — all tests green.
+- `yarn test:coverage` — meets thresholds when you add substantial new code paths.
+- For snapshot changes: review diff, then `yarn test:update` only with explicit intent.

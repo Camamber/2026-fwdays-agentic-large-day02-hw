@@ -1,0 +1,29 @@
+---
+description: "ESLint import order, type imports, and package-internal imports"
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+
+# Imports and ESLint
+
+## Type-only imports
+
+- Use **type-only** imports where appropriate: `import type { X } from "..."` (enforced by `@typescript-eslint/consistent-type-imports` in `.eslintrc.json`).
+
+## Import order
+
+- Follow `import/order`: groups with **newlines** between them; `@excalidraw/**` is treated as external and ordered after other externals (see `.eslintrc.json`).
+
+## Inside `packages/excalidraw`
+
+- **Do not** import from the barrel `@excalidraw/excalidraw` from within `packages/excalidraw` source. Use **direct relative imports** to the specific module (type-only barrel imports may be allowed per rule).
+- Restricted relative paths (e.g. reaching for package root incorrectly) are blocked by `no-restricted-imports` — mirror patterns from neighboring files.
+
+## Target blank
+
+- `react/jsx-no-target-blank` allows `referrer` per config; keep `rel`/`target` patterns consistent with existing components.
+
+## How to verify
+
+- `yarn test:code` — ESLint zero errors (warnings should not increase without reason).
+- For edits under `packages/excalidraw/`: grep that new files do not add `from "@excalidraw/excalidraw"` (non-type) from inside that package.

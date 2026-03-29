@@ -1,0 +1,31 @@
+---
+description: "Quality gate before PR; align with GitHub Actions"
+globs: ".github/**/*"
+alwaysApply: true
+---
+
+# CI and pull requests
+
+## Before opening or updating a PR
+
+From the repository root, run the same checks CI expects:
+
+1. `yarn test:other` — Prettier (list-different)
+2. `yarn test:code` — ESLint, max warnings 0
+3. `yarn test:typecheck` — TypeScript
+4. `yarn test:app` — Vitest (or `yarn test:all` to combine with the above)
+
+This mirrors `.github/workflows/lint.yml` (Prettier + ESLint + typecheck) and test workflows that invoke `yarn test:app`.
+
+## Node version
+
+- CI uses **Node 20.x** (`setup-node`). Match locally when debugging CI-only failures.
+
+## PR content
+
+- Use the repository **pull request template** when it applies (workshop checklist, etc.).
+
+## How to verify
+
+- `yarn test:all` completes with exit code 0.
+- Optional: `yarn build` if your change affects bundling or production config.

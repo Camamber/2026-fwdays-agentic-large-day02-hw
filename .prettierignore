@@ -1,0 +1,3 @@
+# Local agent / BMad trees (not part of upstream CI; Prettier uses this file via --ignore-path)
+.cursor/
+_bmad/
