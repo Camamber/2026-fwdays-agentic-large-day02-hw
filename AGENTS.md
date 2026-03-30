@@ -6,6 +6,18 @@ Instructions for AI coding agents working in this repository. **Start with the p
 
 - **[Project documentation index](docs/index.md)** — overview, quick reference, and links to all generated docs.
 
+## Project overview
+
+This repo is the upstream **Excalidraw** monorepo: a browser-based, Canvas 2D whiteboard/editor packaged as reusable workspace libraries plus a reference host app. The codebase is split between the **core editor** (`packages/excalidraw`) and the **Vite + React shell app** (`excalidraw-app`) that wires product features like collaboration and sharing. Use the `docs/` links below as the canonical local knowledge base for agents.
+
+## Tech stack (high level)
+
+Primary language is **TypeScript** with **React 19**. The host app is built with **Vite 5**, tests are run with **Vitest**, and repo quality gates use **ESLint** and **Prettier**. Package management and linking are via **Yarn classic workspaces**.
+
+## Architecture summary (high level)
+
+The drawing surface is rendered via a **Canvas 2D pipeline** (scene → renderer → canvas context), not via React DOM for shapes. Editor state and behavior in `packages/excalidraw` is driven by a **custom action system** (`actionManager.dispatch()`), with core types such as `AppState` treated as sensitive change areas. The host app composes the editor and integrates external services (e.g. Firebase, Socket.io client, Sentry) at the shell layer.
+
 ## Generated documentation (`docs/`)
 
 | Topic | Document |
