@@ -16,14 +16,15 @@ Triggered by: "build", "verify", "check compilation".
 
 ## Steps
 
-1. Run `yarn build` in the project root
-2. If build succeeds → report success, list changed files
-3. If build fails:
+1. Run `yarn build:packages` in the project root (verifies `packages/*` compile)
+2. Run `yarn build` in the project root (builds `excalidraw-app`)
+3. If both builds succeed → report success, list changed files
+4. If any build fails:
    a. Read error output — identify file, line, error type
    b. Open the file at the error line
    c. Fix the issue (type error, missing import, syntax)
-   d. Re-run `yarn build`
-   e. Repeat until build passes (max 3 attempts)
+   d. Re-run the failing command (`yarn build:packages` or `yarn build`)
+   e. Repeat until both builds pass (max 3 attempts)
 
 ## Outputs
 

@@ -7,7 +7,7 @@ Create a new **React function component** in this repo following project rules. 
 1. **Confirm target** with the user if unclear:
    - **`excalidraw-app/`** — app shell UI (menus, collab chrome, etc.).
    - **`packages/excalidraw/`** — editor UI and core-adjacent components.
-2. **Name**: PascalCase component name (e.g. `SharePanel`). File name **`SharePanel.tsx`** (PascalCase for components per `.cursor/rules/conventions.mdc`).
+2. **Name**: PascalCase component name (e.g. `SharePanel`). File name **`SharePanel.tsx`** for editor components in `packages/excalidraw` (see `.cursor/rules/conventions.mdc`); in `excalidraw-app`, mirror neighboring files.
 3. **Folder**: place next to related features or in the existing `components/` subtree for `excalidraw-app`; mirror sibling files in `packages/excalidraw` for editor components.
 
 ## Implementation checklist

@@ -1,22 +1,24 @@
 ---
-description: "Code conventions for Excalidraw components and utilities"
-globs: packages/**/*.ts,packages/**/*.tsx
+description: "React/TS conventions for the core editor package (@excalidraw/excalidraw source)"
+globs: packages/excalidraw/**/*.ts,packages/excalidraw/**/*.tsx
 alwaysApply: false
 ---
 
-# Code Conventions
+# Code Conventions (`packages/excalidraw`)
+
+These rules apply to the **editor package** only. Other workspace packages (`common`, `element`, `math`, `utils`) and `excalidraw-app` may differ — follow existing files in the folder you edit.
 
 ## Components
 
 - Functional components + hooks ONLY (no class components)
-- Props interface: `{ComponentName}Props`
+- **Props naming**: `type ComponentNameProps = { … }` — use a **`type` alias** for props (same rule as below). Name follows `{ComponentName}Props`.
 - Named exports only (no default exports)
 - Colocated tests: `ComponentName.test.tsx`
 
 ## TypeScript
 
 - Strict mode — no `any`, no `@ts-ignore`
-- Prefer `type` over `interface` for simple types
+- Prefer **`type`** over **`interface`** for object shapes, **including component props**. Use **`interface`** only when you need declaration merging or a pattern that genuinely requires `interface` (rare in this codebase).
 - Import types: `import type { X } from "..."`
 
 ## Files
@@ -28,4 +30,4 @@ alwaysApply: false
 
 - Run `yarn test:code` — ESLint must pass (includes `@typescript-eslint/consistent-type-imports` and project rules).
 - Run `yarn test:other` — Prettier must report no diffs on changed files.
-- New UI in `packages/**`: colocated test file matches `*.test.ts(x)` next to or mirrored per existing package patterns.
+- New UI in `packages/excalidraw`: colocated test file matches `*.test.ts(x)` next to or mirrored per existing patterns in that package.

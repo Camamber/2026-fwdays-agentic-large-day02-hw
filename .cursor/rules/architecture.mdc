@@ -9,7 +9,7 @@ alwaysApply: false
 ## State Management
 
 - Custom state via actionManager — NOT Redux/Zustand/MobX
-- State updates: actionManager.dispatch() ONLY
+- Execute actions via `actionManager.executeAction()` (or `ExcalidrawAPI.executeAction(...)` where applicable) — avoid introducing store-style dispatch patterns
 - State type: AppState (packages/excalidraw/types.ts)
 
 ## Rendering

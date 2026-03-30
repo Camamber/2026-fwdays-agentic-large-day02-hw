@@ -53,7 +53,7 @@ See [deployment-guide.md](./deployment-guide.md).
 
 Repository rules under `.cursor/rules/` highlight:
 
-- **State:** Prefer `actionManager.dispatch()` for editor state; core type `AppState` in `packages/excalidraw/types.ts`.
+- **State:** Prefer the editor action system (`actionManager.executeAction()` / `ExcalidrawAPI.executeAction(...)`) over store-style dispatch; core type `AppState` in `packages/excalidraw/types.ts`.
 - **Rendering:** Canvas pipeline; avoid replacing with alternative canvas libraries without explicit intent.
 - **Dependencies:** Avoid adding npm packages without approval; prefer `packages/utils` for helpers.
 

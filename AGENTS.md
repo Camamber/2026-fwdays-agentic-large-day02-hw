@@ -16,7 +16,7 @@ Primary language is **TypeScript** with **React 19**. The host app is built with
 
 ## Architecture summary (high level)
 
-The drawing surface is rendered via a **Canvas 2D pipeline** (scene → renderer → canvas context), not via React DOM for shapes. Editor state and behavior in `packages/excalidraw` is driven by a **custom action system** (`actionManager.dispatch()`), with core types such as `AppState` treated as sensitive change areas. The host app composes the editor and integrates external services (e.g. Firebase, Socket.io client, Sentry) at the shell layer.
+The drawing surface is rendered via a **Canvas 2D pipeline** (scene → renderer → canvas context), not via React DOM for shapes. Editor behavior is driven by a **custom action system**; actions are executed through **`actionManager.executeAction()`** (and, for consumers, `ExcalidrawAPI.executeAction(...)`), rather than a generic store dispatch. Core types such as `AppState` are sensitive change areas. The host app composes the editor and integrates external services (e.g. Firebase, Socket.io client, Sentry) at the shell layer.
 
 ## Generated documentation (`docs/`)
 
@@ -48,7 +48,7 @@ Each rule includes a **How to verify** section. Apply the rules that match the f
 | --- | --- |
 | Protected core files | [.cursor/rules/do-not-touch.mdc](.cursor/rules/do-not-touch.mdc) |
 | Editor architecture (state, canvas, deps) | [.cursor/rules/architecture.mdc](.cursor/rules/architecture.mdc) |
-| TS/React conventions in `packages/` | [.cursor/rules/conventions.mdc](.cursor/rules/conventions.mdc) |
+| TS/React conventions in `packages/excalidraw` | [.cursor/rules/conventions.mdc](.cursor/rules/conventions.mdc) |
 | Vitest, snapshots, coverage | [.cursor/rules/testing-vitest.mdc](.cursor/rules/testing-vitest.mdc) |
 | Host app (`excalidraw-app`), Jotai, Vite | [.cursor/rules/excalidraw-app.mdc](.cursor/rules/excalidraw-app.mdc) |
 | Yarn workspaces and builds | [.cursor/rules/monorepo-workspaces.mdc](.cursor/rules/monorepo-workspaces.mdc) |
